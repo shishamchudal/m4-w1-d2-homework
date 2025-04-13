@@ -29,8 +29,12 @@
 
     <div id="root">
 
-        
+        <ul>
+            <li v-for="item in shoplist" v-text="item"></li>
+        </ul>
 
+        <input type="text" id="inputItem">
+        <button id="btn" v-on:click="addItem">Add item</button>
     </div>
 
     <script>
@@ -39,8 +43,31 @@
             el: '#root',
 
             data: {
-                
-            }
+                shoplist: ['Salad', 'Eggs', 'Apples', 'Chicken'],
+            },
+
+            methods: {
+                addItem: function() {
+                    this.shoplist.push(this.newItem);
+
+                    this.newItem = '';
+                }
+            },
+            /* mounted() {
+                document.querySelector('#btn').addEventListener('click', () => {
+                    let inputItem = document.querySelector('#inputItem').value;
+                    this.shoplist.push(inputItem);
+                    
+                    item.value = '';
+                });
+            } */
+        })
+
+        document.querySelector('#btn').addEventListener('click', function() {
+            let inputItem = document.querySelector('#inputItem').value;
+            app.shoplist.push(inputItem);
+
+            item.value = '';
         })
     </script>
     
